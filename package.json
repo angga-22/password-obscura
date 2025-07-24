@@ -1,0 +1,52 @@
+{
+  "name": "password-obscura",
+  "version": "1.0.0",
+  "description": "A lightweight NPM package to visually obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern devs.",
+  "license": "MIT",
+  "author": "Angga Saputra",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "password-obscura": "dist/cli.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+    "password",
+    "obscure",
+    "caesar",
+    "cipher",
+    "rot13",
+    "encryption",
+    "obfuscation",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angga-22/password-obscura"
+  },
+  "bugs": {
+    "url": "https://github.com/angga-22/password-obscura/issues"
+  },
+  "homepage": "https://github.com/angga-22/password-obscura#readme",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.16.5",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
