@@ -1,7 +1,8 @@
 # 🔐 password-obscura
 
-[![npm version](https://badge.fury.io/js/password-obscura.svg)](https://badge.fury.io/js/password-obscura)
+[![npm version](https://img.shields.io/npm/v/password-obscura.svg)](https://www.npmjs.com/package/password-obscura)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 A lightweight NPM package to "visually" obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern developers.
 
