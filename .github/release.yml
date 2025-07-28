@@ -1,0 +1,31 @@
+changelog:
+  categories:
+    - title: 🆕 New Features
+      labels:
+        - feature
+        - enhancement
+        - new-feature
+    - title: 🐛 Bug Fixes
+      labels:
+        - bug
+        - fix
+        - bugfix
+    - title: 📖 Documentation
+      labels:
+        - documentation
+        - docs
+    - title: 🔧 Maintenance & Improvements
+      labels:
+        - maintenance
+        - chore
+        - refactor
+        - performance
+    - title: 🔒 Security
+      labels:
+        - security
+  exclude:
+    labels:
+      - ignore-for-release
+      - wontfix
+      - duplicate
+      - invalid

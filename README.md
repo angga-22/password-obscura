@@ -218,6 +218,48 @@ For actual password hashing and security, use established libraries like:
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/angga-22/password-obscura.git
+cd password-obscura
+
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Run examples
+node examples.js
+```
+
+### Versioning
+
+This project follows [Semantic Versioning](https://semver.org/). See [VERSIONING.md](VERSIONING.md) for details about our versioning strategy.
+
+### Releases
+
+To create a new release:
+
+```bash
+# For bug fixes
+npm run release:patch
+
+# For new features
+npm run release:minor
+
+# For breaking changes
+npm run release:major
+```
+
+Or use the release script:
+
+```bash
+./scripts/release.sh patch
+```
+
 ## 📄 License
 
 MIT License - see the [LICENSE](LICENSE) file for details.

@@ -36,7 +36,13 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "version": "npm run build && git add -A",
+    "postversion": "git push && git push --tags",
+    "release:patch": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major",
+    "changelog": "echo 'Please update CHANGELOG.md manually before releasing'"
   },
   "dependencies": {
     "commander": "^12.1.0"
