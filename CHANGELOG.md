@@ -7,17 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-01-29
+
 ### Added
 
-- Development workflow improvements
+- **Multi-Table Caesar Cipher**: Advanced cipher method with multiple substitution tables
+- **Dynamic Shift Patterns**: Five new shift pattern algorithms:
+  - Even-Odd: Alternates between two different shift values based on character position
+  - Fibonacci: Uses Fibonacci sequence for progressive shift values
+  - Prime: Uses prime number sequence for shift calculations
+  - Progressive: Incrementally increases shift value for each character
+  - Custom: Allows user-defined shift sequences
+- **Polyalphabetic Cipher**: Keyword-based encryption with repeating key pattern
+- **Advanced Multi-Layer Cipher**: Combines multiple cipher techniques in sequence
+- **Enhanced CLI Support**: New command-line options for advanced cipher methods:
+  - `--keyword`: For polyalphabetic cipher keywords
+  - `--pattern`: For dynamic shift pattern selection
+  - `--custom-shifts`: For custom shift sequences
+- **TypeScript Interfaces**: New type definitions for advanced cipher configurations:
+  - `DynamicTableConfig`: Configuration for multi-table ciphers
+  - `PolyalphabeticConfig`: Configuration for keyword-based ciphers
+  - `AdvancedLayer`: Configuration for multi-layer transformations
 
-### Changed
+### Enhanced
 
-- Internal code optimizations
+- **API Expansion**: Added support for 3 new cipher methods (total: 7 methods)
+- **CLI Tool**: Extended to support all advanced cipher features
+- **Documentation**: Comprehensive examples for all new cipher methods
+- **Error Handling**: Improved validation and error messages for advanced features
 
-### Fixed
+### Technical
 
-- Minor bug fixes and improvements
+- **Dynamic Cipher Engine**: New `src/lib/dynamicCipher.ts` with 296 lines of advanced cipher logic
+- **Pattern Generators**: Sophisticated algorithms for dynamic shift calculation
+- **Multi-Table Support**: Ability to use multiple substitution alphabets
+- **Polyalphabetic Engine**: Vigenère-style encryption with keyword expansion
+- **Layer Composition**: Framework for combining multiple cipher transformations
+
+### Breaking Changes
+
+- Updated `ObscureOptions` interface to include new configuration options
+- Enhanced method parameter validation for new cipher types
 
 ## [1.0.0] - 2025-01-28
 
@@ -57,5 +87,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for methods: 'caesar', 'rot13', 'symbolMap', 'mirror'
 - Configurable options for shift values and custom symbol mappings
 
-[Unreleased]: https://github.com/angga-22/password-obscura/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/angga-22/password-obscura/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/angga-22/password-obscura/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/angga-22/password-obscura/releases/tag/v1.0.0

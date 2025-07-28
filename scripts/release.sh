@@ -25,8 +25,8 @@ echo -e "${BLUE}🚀 Starting $RELEASE_TYPE release process...${NC}"
 
 # Check if we're on main branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ "$CURRENT_BRANCH" != "main" ]; then
-    echo -e "${YELLOW}Warning: You're not on the main branch (currently on: $CURRENT_BRANCH)${NC}"
+if [ "$CURRENT_BRANCH" != "main" ] && [ "$CURRENT_BRANCH" != "feat/cipher-dynamic-table" ]; then
+    echo -e "${YELLOW}Warning: You're not on the main branch or feature branch (currently on: $CURRENT_BRANCH)${NC}"
     read -p "Continue anyway? (y/n): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
