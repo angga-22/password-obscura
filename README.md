@@ -3,7 +3,6 @@
 [![npm version](https://img.shields.io/npm/v/password-obscura.svg)](https://www.npmjs.com/package/password-obscura)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
 A lightweight NPM package to "visually" obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern developers.
 
 ## 🔐 What It Does
@@ -25,13 +24,20 @@ Instead of strong encryption (which is better handled by libs like bcrypt), this
 
 ## 🧠 Features
 
-- `obscure(input, options)` – shift letters, replace symbols
+- `obscure(input, options)` – shift letters, replace symbols, multi-table encryption
 - `reveal(obscured, options)` – decode using same key
 - Supports multiple algorithms:
   - `caesar` - Classic Caesar cipher with customizable shift
   - `rot13` - ROT13 cipher (shift by 13)
   - `symbolMap` - Replace characters with custom symbols/emojis
   - `mirror` - Atbash cipher (a ↔ z, b ↔ y, etc.)
+  - `multiTable` - **NEW!** Multi-table Caesar with dynamic shift patterns
+  - `polyalphabetic` - **NEW!** Keyword-based polyalphabetic cipher
+  - `advanced` - **NEW!** Multi-layer cipher with various transformations
+- **Advanced Shift Patterns**: Even-odd, Fibonacci, Prime numbers, Progressive, Custom sequences
+- **Multi-table Support**: Use different alphabets for enhanced security
+- **Keyword Ciphers**: Polyalphabetic encryption with user-defined keywords
+- **Layer Combinations**: Stack multiple cipher techniques for complex obfuscation
 - Lightweight and browser-friendly (zero runtime deps)
 - Written in TypeScript, easy to extend
 
@@ -65,7 +71,89 @@ console.log(mirrored); // → "svool"
 
 // Symbol mapping with emojis
 const emojiHidden = obscure("abc123", { method: "symbolMap" });
-console.log(emojiHidden); // → "🔥⭐🌟🎲🎯🎪"
+console.log(emojiHidden); // → "🔥⭐🌟🟠🟡🟢"
+```
+
+### Advanced Multi-Table Ciphers
+
+```typescript
+import { obscure, reveal, DynamicTableConfig } from "password-obscura";
+
+// Multi-table Caesar with even-odd pattern
+const tableConfig: DynamicTableConfig = {
+  tables: ["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"],
+  shiftPattern: "even-odd",
+  baseShift: 3,
+};
+
+const multiResult = obscure("Hello World", {
+  method: "multiTable",
+  tableConfig,
+});
+console.log(multiResult); // → "Kaohr Zkuhg"
+
+// Fibonacci shift pattern
+const fibConfig: DynamicTableConfig = {
+  tables: ["abcdefghijklmnopqrstuvwxyz"],
+  shiftPattern: "fibonacci",
+  baseShift: 1,
+};
+
+const fibResult = obscure("ABCDEFGHIJK", {
+  method: "multiTable",
+  tableConfig: fibConfig,
+});
+console.log(fibResult); // → "BCEGJNTCQMV"
+
+// Custom shift sequence
+const customConfig: DynamicTableConfig = {
+  tables: ["abcdefghijklmnopqrstuvwxyz"],
+  shiftPattern: "custom",
+  baseShift: 1,
+  customShifts: [1, 3, 5, 7, 2, 4, 6, 8],
+};
+```
+
+### Polyalphabetic Cipher
+
+```typescript
+import { obscure, reveal, PolyalphabeticConfig } from "password-obscura";
+
+const polyConfig: PolyalphabeticConfig = {
+  keyword: "SECRET",
+};
+
+const polyResult = obscure("Hello World", {
+  method: "polyalphabetic",
+  polyConfig,
+});
+console.log(polyResult); // → "Oinus Mstuh"
+
+const decrypted = reveal(polyResult, { method: "polyalphabetic", polyConfig });
+console.log(decrypted); // → "Hello World"
+```
+
+### Advanced Multi-Layer Cipher
+
+```typescript
+const layers = [
+  { type: "shift", config: { shift: 3 } },
+  {
+    type: "table",
+    config: {
+      tables: ["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"],
+      shiftPattern: "fibonacci",
+      baseShift: 2,
+    },
+  },
+  { type: "reverse" },
+];
+
+const advancedResult = obscure("Secret Message", {
+  method: "advanced",
+  layers,
+});
+console.log(advancedResult); // → Complex multi-layer transformation
 ```
 
 ### Advanced Symbol Mapping

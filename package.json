@@ -1,6 +1,6 @@
 {
   "name": "password-obscura",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A lightweight NPM package to visually obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern devs.",
   "license": "MIT",
   "author": "Angga Saputra",
@@ -26,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/angga-22/password-obscura"
+    "url": "git+https://github.com/angga-22/password-obscura.git"
   },
   "bugs": {
     "url": "https://github.com/angga-22/password-obscura/issues"
