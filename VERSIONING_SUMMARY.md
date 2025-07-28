@@ -5,6 +5,7 @@
 Your password-obscura project now has a complete versioning system with:
 
 ### 📁 Files Added
+
 - **CHANGELOG.md** - Tracks all changes following Keep a Changelog format
 - **VERSIONING.md** - Complete guide on semantic versioning for this project
 - **scripts/release.sh** - Automated release script with safety checks
@@ -13,12 +14,15 @@ Your password-obscura project now has a complete versioning system with:
 - **.github/RELEASE_TEMPLATE.md** - Template for GitHub releases
 
 ### 📦 Package.json Updates
+
 - Added versioning scripts: `release:patch`, `release:minor`, `release:major`
 - Added version lifecycle hooks
 - Repository URLs and metadata
 
 ### 🔄 Semantic Versioning
+
 Following SemVer (Major.Minor.Patch):
+
 - **Patch** (1.0.1): Bug fixes, docs, performance
 - **Minor** (1.1.0): New features, backwards compatible
 - **Major** (2.0.0): Breaking changes
@@ -26,11 +30,12 @@ Following SemVer (Major.Minor.Patch):
 ## 🚀 How to Use
 
 ### Quick Release
+
 ```bash
 # Bug fixes
 npm run release:patch
 
-# New features  
+# New features
 npm run release:minor
 
 # Breaking changes
@@ -38,11 +43,13 @@ npm run release:major
 ```
 
 ### Advanced Release (with checks)
+
 ```bash
 ./scripts/release.sh patch
 ```
 
 ### Check Version Info
+
 ```bash
 node scripts/version.js check
 ```
@@ -59,6 +66,7 @@ node scripts/version.js check
 ## ✅ Ready for Production
 
 Your project now has:
+
 - ✅ Semantic versioning setup
 - ✅ Automated release process
 - ✅ Git tagging
