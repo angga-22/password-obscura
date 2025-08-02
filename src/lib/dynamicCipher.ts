@@ -30,26 +30,40 @@ export function generateShift(
   baseShift: number = 3,
   customShifts?: number[]
 ): number {
+  let shift: number;
+
   switch (pattern) {
     case "even-odd":
-      return position % 2 === 0 ? baseShift : baseShift + 1;
+      shift = position % 2 === 0 ? baseShift : baseShift + 1;
+      break;
 
     case "fibonacci":
-      return FIBONACCI_SEQUENCE[position % FIBONACCI_SEQUENCE.length];
+      shift = FIBONACCI_SEQUENCE[position % FIBONACCI_SEQUENCE.length];
+      break;
 
     case "prime":
-      return PRIME_NUMBERS[position % PRIME_NUMBERS.length];
+      shift = PRIME_NUMBERS[position % PRIME_NUMBERS.length];
+      break;
 
     case "progressive":
-      return baseShift + (position % 10);
+      shift = baseShift + (position % 10);
+      break;
 
     case "custom":
-      if (!customShifts || customShifts.length === 0) return baseShift;
-      return customShifts[position % customShifts.length];
+      if (!customShifts || customShifts.length === 0) {
+        shift = baseShift;
+      } else {
+        shift = customShifts[position % customShifts.length];
+      }
+      break;
 
     default:
-      return baseShift;
+      shift = baseShift;
+      break;
   }
+
+  // Ensure shift is always within reasonable bounds for a 26-letter alphabet
+  return shift % 26;
 }
 
 /**
@@ -60,10 +74,14 @@ export function multiTableCaesar(
   config: DynamicTableConfig
 ): string {
   const { tables, shiftPattern, customShifts, baseShift = 3 } = config;
+  const standardAlphabet = "abcdefghijklmnopqrstuvwxyz";
 
   return text
     .split("")
     .map((char, index) => {
+      // For non-alphabetic characters, return as-is
+      if (!/[a-zA-Z]/.test(char)) return char;
+
       // Get the table for this position
       const tableIndex = index % tables.length;
       const table = tables[tableIndex];
@@ -71,15 +89,17 @@ export function multiTableCaesar(
       // Generate shift for this position
       const shift = generateShift(index, shiftPattern, baseShift, customShifts);
 
-      // Find character in current table
-      const charIndex = table.indexOf(char.toLowerCase());
-      if (charIndex === -1) return char; // Character not in table, return as-is
+      // Find character position in standard alphabet
+      const standardIndex = standardAlphabet.indexOf(char.toLowerCase());
+      if (standardIndex === -1) return char;
 
-      // Apply shift
-      const newIndex = (charIndex + shift) % table.length;
-      const newChar = table[newIndex];
+      // Apply shift in standard alphabet space
+      const shiftedIndex = (standardIndex + shift) % standardAlphabet.length;
 
-      // Check if newChar exists before trying to call toUpperCase
+      // Map to the selected table
+      const newChar = table[shiftedIndex];
+
+      // Check if newChar exists
       if (!newChar) return char;
 
       // Preserve case
@@ -96,30 +116,40 @@ export function multiTableCaesarDecrypt(
   config: DynamicTableConfig
 ): string {
   const { tables, shiftPattern, customShifts, baseShift = 3 } = config;
+  const standardAlphabet = "abcdefghijklmnopqrstuvwxyz";
 
   return text
     .split("")
     .map((char, index) => {
-      // Get the table for this position
+      // For non-alphabetic characters, return as-is
+      if (!/[a-zA-Z]/.test(char)) return char;
+
+      // Get the table for this position (same as encoding)
       const tableIndex = index % tables.length;
       const table = tables[tableIndex];
 
       // Generate shift for this position (same as encoding)
       const shift = generateShift(index, shiftPattern, baseShift, customShifts);
 
-      // Find character in current table
-      const charIndex = table.indexOf(char.toLowerCase());
-      if (charIndex === -1) return char; // Character not in table, return as-is
+      // Find character position in the selected table
+      const tableIndex_char = table.indexOf(char.toLowerCase());
+      if (tableIndex_char === -1) return char;
 
-      // Apply reverse shift
-      const newIndex = (charIndex - shift + table.length) % table.length;
-      const newChar = table[newIndex];
+      // Reverse the shift in standard alphabet space
+      const originalIndex =
+        (tableIndex_char - shift + standardAlphabet.length) %
+        standardAlphabet.length;
 
-      // Check if newChar exists before trying to call toUpperCase
-      if (!newChar) return char;
+      // Get the original character from standard alphabet
+      const originalChar = standardAlphabet[originalIndex];
+
+      // Check if originalChar exists
+      if (!originalChar) return char;
 
       // Preserve case
-      return char === char.toUpperCase() ? newChar.toUpperCase() : newChar;
+      return char === char.toUpperCase()
+        ? originalChar.toUpperCase()
+        : originalChar;
     })
     .join("");
 }

@@ -22,13 +22,13 @@ import {
 
 export interface ObscureOptions {
   method:
-    | "caesar"
-    | "rot13"
-    | "symbolMap"
-    | "mirror"
-    | "multiTable"
-    | "polyalphabetic"
-    | "advanced";
+  | "caesar"
+  | "rot13"
+  | "symbolMap"
+  | "mirror"
+  | "multiTable"
+  | "polyalphabetic"
+  | "advanced";
   shift?: number; // used in caesar
   symbolMap?: SymbolMapConfig; // used in symbolMap
   tableConfig?: DynamicTableConfig; // used in multiTable

@@ -92,7 +92,7 @@ export function symbolMapDecode(
     reverseMap[symbol] = char;
   });
 
-  // Split by Unicode code points to handle emojis properly
+  // Use Array.from to properly handle Unicode characters and emojis
   const chars = Array.from(text);
   return chars.map((char) => reverseMap[char] || char).join("");
 }
