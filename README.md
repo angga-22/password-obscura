@@ -9,21 +9,21 @@ A lightweight NPM package to "visually" obscure passwords or strings using custo
 
 Instead of strong encryption (which is better handled by libs like bcrypt), this tool is meant for:
 
-- 🔒 Obscuring passwords for display (e.g., showing a fake-but-consistent password to users)
-- 🧪 Generating pseudo-random but reversible representations
-- 📜 Teaching cryptography basics (Caesar, Atbash, ROT13, Vigenère, etc.)
-- 🎨 Creative text transformations with emojis and symbols
-- 🔧 Advanced cipher combinations for educational purposes
+- Obscuring passwords for display (e.g., showing a fake-but-consistent password to users)
+- Generating pseudo-random but reversible representations
+- Teaching cryptography basics (Caesar, Atbash, ROT13, Vigenère, etc.)
+- Creative text transformations with emojis and symbols
+- Advanced cipher combinations for educational purposes
 
 ## ✅ Use Cases
 
 - 🎮 Fun CLI tools and interactive applications
 - 🔐 Password managers showing masked variants
-- 🤖 Discord / game bots that hide inputs creatively
-- 🎓 Educational demos on encryption basics and cryptography
-- 📝 Obfuscating config keys or token snippets in logs
-- 🧪 Testing and demonstration of cipher algorithms
-- 🎭 Creative text art and visual transformations
+- Discord / game bots that hide inputs creatively
+- Educational demos on encryption basics and cryptography
+- Obfuscating config keys or token snippets in logs
+- Testing and demonstration of cipher algorithms
+- Creative text art and visual transformations
 
 ## 🧠 Features
 
@@ -53,11 +53,11 @@ Instead of strong encryption (which is better handled by libs like bcrypt), this
   - **Perfect Reversibility**: All ciphers maintain encode/decode symmetry
 
 - **Developer Experience**:
-  - 🎯 **TypeScript First**: Full type safety with comprehensive interfaces
-  - 🪶 **Lightweight**: 8.3 kB package size, zero runtime dependencies
-  - 🌐 **Universal**: Works in Node.js and browser environments
-  - ⚡ **Fast**: Optimized algorithms with excellent performance
-  - 🛠️ **CLI Tool**: Complete command-line interface included
+  -  **TypeScript First**: Full type safety with comprehensive interfaces
+  -  **Lightweight**: 8.3 kB package size, zero runtime dependencies
+  -  **Universal**: Works in Node.js and browser environments
+  -  **Fast**: Optimized algorithms with excellent performance
+  -  **CLI Tool**: Complete command-line interface included
 
 ## 📦 Installation
 
@@ -75,7 +75,7 @@ pnpm add password-obscura
 bun add password-obscura
 ```
 
-## 🧪 API Usage
+## API Usage
 
 ### Basic Examples
 
@@ -350,34 +350,34 @@ DEFAULT_TABLES: string[];
 
 Classic Caesar cipher that shifts letters by a specified amount.
 
-- ✅ Preserves case and non-alphabetic characters
-- ✅ Default shift: 3, supports any shift value
-- ✅ Mathematically sound with modular arithmetic
+- Preserves case and non-alphabetic characters
+- Default shift: 3, supports any shift value
+- Mathematically sound with modular arithmetic
 
 #### ROT13
 
 Special case of Caesar cipher with a shift of 13.
 
-- ✅ Self-inverse (encoding and decoding are the same operation)
-- ✅ Commonly used in online forums
-- ✅ Fixed 13-character shift for consistency
+- Self-inverse (encoding and decoding are the same operation)
+- Commonly used in online forums
+- Fixed 13-character shift for consistency
 
 #### Symbol Map
 
 Replaces characters with custom symbols or emojis.
 
-- ✅ Includes default emoji mapping for all alphanumeric characters
-- ✅ Fully customizable with your own symbol mappings
-- ✅ Perfect for creative obfuscation and visual appeal
-- ✅ Handles Unicode characters properly
+- Includes default emoji mapping for all alphanumeric characters
+- Fully customizable with your own symbol mappings
+- Perfect for creative obfuscation and visual appeal
+- Handles Unicode characters properly
 
 #### Mirror (Atbash)
 
 Maps each letter to its mirror position in the alphabet (A↔Z, B↔Y, etc.).
 
-- ✅ Self-inverse like ROT13
-- ✅ Ancient cipher method with historical significance
-- ✅ Case-preserving transformation
+- Self-inverse like ROT13
+- Ancient cipher method with historical significance
+- Case-preserving transformation
 
 ### Advanced Cipher Methods
 
@@ -385,10 +385,10 @@ Maps each letter to its mirror position in the alphabet (A↔Z, B↔Y, etc.).
 
 Uses multiple substitution alphabets with dynamic shift patterns.
 
-- 🚀 **5 Shift Patterns**: even-odd, fibonacci, prime, progressive, custom
-- 🚀 **Multiple Tables**: Switch between different alphabets per character
-- 🚀 **Perfect Reversibility**: All patterns maintain encode/decode symmetry
-- 🚀 **Educational Value**: Demonstrates polyalphabetic principles
+-  **5 Shift Patterns**: even-odd, fibonacci, prime, progressive, custom
+-  **Multiple Tables**: Switch between different alphabets per character
+-  **Perfect Reversibility**: All patterns maintain encode/decode symmetry
+-  **Educational Value**: Demonstrates polyalphabetic principles
 
 **Shift Patterns:**
 
@@ -402,19 +402,19 @@ Uses multiple substitution alphabets with dynamic shift patterns.
 
 Keyword-based Vigenère-style encryption.
 
-- 🔑 **Keyword Encryption**: Uses repeating keyword for shift calculation
-- 🔄 **Dynamic Shifts**: Each keyword character determines shift amount
-- 📚 **Multiple Tables**: Can use different alphabets for enhanced complexity
-- 🎓 **Classic Algorithm**: Implements traditional Vigenère cipher principles
+-  **Keyword Encryption**: Uses repeating keyword for shift calculation
+-  **Dynamic Shifts**: Each keyword character determines shift amount
+-  **Multiple Tables**: Can use different alphabets for enhanced complexity
+-  **Classic Algorithm**: Implements traditional Vigenère cipher principles
 
 #### Advanced Multi-Layer Cipher
 
 Combines multiple cipher techniques in sequence.
 
-- 🔗 **Layer Composition**: Stack multiple transformations
-- 🔀 **Transformation Types**: shift, table, reverse, transpose
-- ⚙️ **Configurable**: Custom layer configurations
-- 🔄 **Reversible**: Applies transformations in reverse order for decoding
+-  **Layer Composition**: Stack multiple transformations
+-  **Transformation Types**: shift, table, reverse, transpose
+-  **Configurable**: Custom layer configurations
+-  **Reversible**: Applies transformations in reverse order for decoding
 
 **Available Layer Types:**
 
@@ -439,21 +439,21 @@ Based on 100 iterations with long text strings:
 
 ### Compatibility
 
-- ✅ **Node.js**: v16+ (ESM modules)
-- ✅ **Browsers**: Modern browsers with ES2020 support
-- ✅ **TypeScript**: Full type definitions included
-- ✅ **Package Size**: 8.3 kB (40.4 kB unpacked)
-- ✅ **Dependencies**: Zero runtime dependencies (CLI uses commander)
+-  **Node.js**: v16+ (ESM modules)
+-  **Browsers**: Modern browsers with ES2020 support
+-  **TypeScript**: Full type definitions included
+-  **Package Size**: 8.3 kB (40.4 kB unpacked)
+-  **Dependencies**: Zero runtime dependencies (CLI uses commander)
 
 ### ESM Module Support
 
 This package uses modern ES modules:
 
 ```javascript
-// ✅ Correct import syntax
+// Correct import syntax
 import { obscure, reveal } from "password-obscura";
 
-// ❌ CommonJS require() not supported
+// CommonJS require() not supported
 const { obscure } = require("password-obscura"); // Won't work
 ```
 
@@ -565,10 +565,10 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 Inspired by classical cipher techniques and modern developer needs for creative text transformation. Special thanks to:
 
-- 📚 **Historical Cryptographers**: Caesar, Vigenère, Atbash cipher inventors
-- 🎓 **Educational Resources**: Cryptography textbooks and online courses
-- 💻 **Open Source Community**: TypeScript, Node.js, and npm ecosystem
-- 🧪 **Testing**: Comprehensive validation of all cipher implementations
+-  **Historical Cryptographers**: Caesar, Vigenère, Atbash cipher inventors
+-  **Educational Resources**: Cryptography textbooks and online courses
+-  **Open Source Community**: TypeScript, Node.js, and npm ecosystem
+-  **Testing**: Comprehensive validation of all cipher implementations
 
 ---
 
