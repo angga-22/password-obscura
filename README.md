@@ -572,4 +572,4 @@ Inspired by classical cipher techniques and modern developer needs for creative 
 
 ---
 
-**Built with ❤️ for developers who love creative coding and educational cryptography.**
+**Built with ❤️ by angga for developers who love creative coding and educational cryptography.**
