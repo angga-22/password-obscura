@@ -9,10 +9,14 @@ import {
   obscure,
   reveal,
   DEFAULT_TABLES,
-  DEFAULT_SYMBOL_MAP,
 } from "./dist/index.js";
 
-// Test utilities
+function logHeader(title) {
+  console.log(
+    `\n${colors.cyan}${colors.bright}=== ${title} ===${colors.reset}\n`
+  );
+}
+
 const colors = {
   reset: "\x1b[0m",
   bright: "\x1b[1m",
@@ -23,12 +27,6 @@ const colors = {
   magenta: "\x1b[35m",
   cyan: "\x1b[36m",
 };
-
-function logHeader(title) {
-  console.log(
-    `\n${colors.cyan}${colors.bright}=== ${title} ===${colors.reset}\n`
-  );
-}
 
 function logTest(testName, input, output, expected, success) {
   const status = success
@@ -122,40 +120,14 @@ testCases.simple.forEach((input, i) => {
   runTest(`ROT13-${i + 1}`, input, "rot13");
 });
 
-logHeader("3. Symbol Map Tests");
-logSection("Default symbol mapping");
-testCases.simple.forEach((input, i) => {
-  runTest(`SymbolMap-${i + 1}`, input, "symbolMap");
-});
-
-logSection("Custom symbol mapping");
-const customSymbolMap = {
-  a: "🌟",
-  b: "🚀",
-  c: "💎",
-  d: "🎯",
-  e: "🔥",
-  h: "🌈",
-  l: "💫",
-  o: "⭐",
-  r: "🎪",
-  w: "🌊",
-  1: "🔢",
-  2: "🎲",
-  3: "🎰",
-};
-runTest("SymbolMap-Custom", "hello world 123", "symbolMap", {
-  symbolMap: customSymbolMap,
-});
-
-logHeader("4. Mirror (Atbash) Cipher Tests");
+logHeader("3. Mirror (Atbash) Cipher Tests");
 testCases.simple.forEach((input, i) => {
   runTest(`Mirror-${i + 1}`, input, "mirror");
 });
 
 // ========== ADVANCED CIPHER METHODS ==========
 
-logHeader("5. Multi-Table Caesar Cipher Tests");
+logHeader("4. Multi-Table Caesar Cipher Tests");
 
 logSection("Even-Odd Pattern");
 const evenOddConfig = {
@@ -218,7 +190,7 @@ testCases.simple.forEach((input, i) => {
   });
 });
 
-logHeader("6. Polyalphabetic Cipher Tests");
+logHeader("5. Polyalphabetic Cipher Tests");
 
 logSection("Various Keywords");
 const keywords = ["SECRET", "CIPHER", "KEY", "DYNAMIC", "POLYALPHABETIC"];
@@ -241,7 +213,7 @@ const longText = "The quick brown fox jumps over the lazy dog";
   });
 });
 
-logHeader("7. Advanced Multi-Layer Cipher Tests");
+logHeader("6. Advanced Multi-Layer Cipher Tests");
 
 logSection("Default Layers");
 testCases.complex.slice(0, 3).forEach((input, i) => {
@@ -298,12 +270,11 @@ runTest("Advanced-Complex", "Complex Multi-Layer Test", "advanced", {
 
 // ========== EDGE CASES AND STRESS TESTS ==========
 
-logHeader("8. Edge Case Tests");
+logHeader("7. Edge Case Tests");
 
 logSection("Empty and Whitespace");
 testCases.edge.slice(0, 3).forEach((input, i) => {
   runTest(`Edge-Empty-${i + 1}`, input, "caesar");
-  runTest(`Edge-Empty-Symbol-${i + 1}`, input, "symbolMap");
 });
 
 logSection("Numbers and Symbols Only");
@@ -326,7 +297,7 @@ const longStressText = testCases.edge[testCases.edge.length - 1];
 
 // ========== CONFIGURATION VALIDATION TESTS ==========
 
-logHeader("9. Error Handling and Validation Tests");
+logHeader("8. Error Handling and Validation Tests");
 
 logSection("Invalid Method Handling");
 totalTests++;
@@ -360,7 +331,7 @@ try {
 
 // ========== PATTERN ANALYSIS ==========
 
-logHeader("10. Pattern Analysis and Comparison");
+logHeader("9. Pattern Analysis and Comparison");
 
 logSection("Shift Pattern Comparison");
 const patternTestString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -389,32 +360,15 @@ patterns.forEach((pattern) => {
   console.log("");
 });
 
-logSection("Symbol Mapping Coverage");
-const allChars =
-  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const symbolResult = obscure(allChars, { method: "symbolMap" });
-console.log(`${colors.yellow}All Characters Test${colors.reset}:`);
-console.log(`  Input:  ${allChars}`);
-console.log(`  Symbols: ${symbolResult}`);
-console.log(`  Decoded: ${reveal(symbolResult, { method: "symbolMap" })}`);
-console.log(
-  `  Match: ${
-    allChars === reveal(symbolResult, { method: "symbolMap" })
-      ? colors.green + "✅"
-      : colors.red + "❌"
-  }${colors.reset}\n`
-);
-
 // ========== PERFORMANCE BENCHMARKS ==========
 
-logHeader("11. Performance Benchmarks");
+logHeader("10. Performance Benchmarks");
 
 const performanceTestString =
   "The quick brown fox jumps over the lazy dog. ".repeat(100);
 const methods = [
   "caesar",
   "rot13",
-  "symbolMap",
   "mirror",
   "multiTable",
   "polyalphabetic",

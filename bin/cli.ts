@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { obscure, reveal, ObscureOptions } from "../src/index.js";
+import { obscure, reveal, ObscureOptions } from "../src";
 
 const program = new Command();
 
@@ -15,7 +15,7 @@ program
   .argument("<text>", "Text to encode")
   .option(
     "-m, --method <method>",
-    "Method to use (caesar, rot13, symbolMap, mirror, multiTable, polyalphabetic, advanced)",
+    "Method to use (caesar, rot13, mirror, multiTable, polyalphabetic, advanced)",
     "caesar"
   )
   .option("-s, --shift <shift>", "Shift amount (for caesar method)", "3")
@@ -39,7 +39,6 @@ program
       const validMethods = [
         "caesar",
         "rot13",
-        "symbolMap",
         "mirror",
         "multiTable",
         "polyalphabetic",
@@ -102,7 +101,7 @@ program
   .argument("<text>", "Text to decode")
   .option(
     "-m, --method <method>",
-    "Method to use (caesar, rot13, symbolMap, mirror, multiTable, polyalphabetic, advanced)",
+    "Method to use (caesar, rot13, mirror, multiTable, polyalphabetic, advanced)",
     "caesar"
   )
   .option("-s, --shift <shift>", "Shift amount (for caesar method)", "3")
@@ -126,7 +125,6 @@ program
       const validMethods = [
         "caesar",
         "rot13",
-        "symbolMap",
         "mirror",
         "multiTable",
         "polyalphabetic",

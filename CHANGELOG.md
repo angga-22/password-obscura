@@ -105,7 +105,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `obscure(input: string, options: ObscureOptions): string`
 - `reveal(input: string, options: ObscureOptions): string`
-- Support for methods: 'caesar', 'rot13', 'symbolMap', 'mirror'
+- Support for methods: 'caesar', 'rot13', 'mirror'
 - Configurable options for shift values and custom symbol mappings
 
 [Unreleased]: https://github.com/angga-22/password-obscura/compare/v2.0.2...HEAD

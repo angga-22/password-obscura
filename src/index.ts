@@ -1,12 +1,7 @@
 // src/index.ts
 import { caesarCipher, caesarDecipher } from "./lib/caesar.js";
 import { rot13 } from "./lib/rot13.js";
-import {
-  symbolMapEncode,
-  symbolMapDecode,
-  SymbolMapConfig,
-  DEFAULT_SYMBOL_MAP,
-} from "./lib/symbolMap.js";
+
 import { atbashCipher, atbashDecipher } from "./lib/atbash.js";
 import {
   multiTableCaesar,
@@ -24,13 +19,11 @@ export interface ObscureOptions {
   method:
   | "caesar"
   | "rot13"
-  | "symbolMap"
   | "mirror"
   | "multiTable"
   | "polyalphabetic"
   | "advanced";
   shift?: number; // used in caesar
-  symbolMap?: SymbolMapConfig; // used in symbolMap
   tableConfig?: DynamicTableConfig; // used in multiTable
   polyConfig?: PolyalphabeticConfig; // used in polyalphabetic
   layers?: Array<{
@@ -46,8 +39,6 @@ export function obscure(input: string, options: ObscureOptions): string {
       return caesarCipher(input, options.shift ?? 3);
     case "rot13":
       return rot13(input);
-    case "symbolMap":
-      return symbolMapEncode(input, options.symbolMap ?? DEFAULT_SYMBOL_MAP);
     case "mirror":
       return atbashCipher(input);
     case "multiTable":
@@ -93,8 +84,6 @@ export function reveal(input: string, options: ObscureOptions): string {
       return caesarDecipher(input, options.shift ?? 3);
     case "rot13":
       return rot13(input); // rot13 is symmetric
-    case "symbolMap":
-      return symbolMapDecode(input, options.symbolMap ?? DEFAULT_SYMBOL_MAP);
     case "mirror":
       return atbashDecipher(input); // atbash is symmetric
     case "multiTable":
@@ -135,5 +124,5 @@ export function reveal(input: string, options: ObscureOptions): string {
 }
 
 // Re-export types and constants for convenience
-export type { SymbolMapConfig, DynamicTableConfig, PolyalphabeticConfig };
-export { DEFAULT_SYMBOL_MAP, DEFAULT_TABLES };
+export type {  DynamicTableConfig, PolyalphabeticConfig };
+export {  DEFAULT_TABLES };

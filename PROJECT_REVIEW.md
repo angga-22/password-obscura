@@ -18,7 +18,6 @@ password-obscura/
 │   └── lib/
 │       ├── caesar.ts         # Basic Caesar cipher
 │       ├── rot13.ts          # ROT13 implementation
-│       ├── symbolMap.ts      # Symbol/emoji mapping
 │       ├── atbash.ts         # Mirror/Atbash cipher
 │       └── dynamicCipher.ts  # Advanced multi-table ciphers
 ├── bin/cli.ts                # Command-line interface
@@ -37,7 +36,7 @@ password-obscura/
 
 ### 1. **Comprehensive Cipher Support**
 
-- **7 cipher methods**: caesar, rot13, symbolMap, mirror, multiTable, polyalphabetic, advanced
+- **7 cipher methods**: caesar, rot13, mirror, multiTable, polyalphabetic, advanced
 - **5 dynamic shift patterns**: even-odd, fibonacci, prime, progressive, custom
 - **Multi-table support**: Up to 4 default tables with custom table configuration
 - **Polyalphabetic encryption**: Keyword-based Vigenère-style ciphers
@@ -109,32 +108,14 @@ Some shift patterns (fibonacci, prime) don't decode perfectly when used with mul
 
 ## 🔧 Recommended Fixes
 
-### Priority 1: Symbol Map Fix
 
-```typescript
-// In symbolMap.ts - improve Unicode handling
-export function symbolMapDecode(
-  text: string,
-  symbolMap: SymbolMapConfig = DEFAULT_SYMBOL_MAP
-): string {
-  const reverseMap: SymbolMapConfig = {};
-  Object.entries(symbolMap).forEach(([char, symbol]) => {
-    reverseMap[symbol] = char;
-  });
-
-  // Use proper Unicode segmentation
-  const chars = [...text]; // Spread operator handles Unicode better
-  return chars.map((char) => reverseMap[char] || char).join("");
-}
-```
-
-### Priority 2: Multi-Table Algorithm Review
+### Priority 1: Multi-Table Algorithm Review
 
 - Review table switching logic in `multiTableCaesar`
 - Ensure shift calculations are consistent between encode/decode
 - Add boundary checks for table indices
 
-### Priority 3: Advanced Layer Validation
+### Priority 2: Advanced Layer Validation
 
 - Implement layer validation to ensure reversibility
 - Add debug logging for complex transformations

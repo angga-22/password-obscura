@@ -5,7 +5,7 @@
 
 A lightweight NPM package to "visually" obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern developers with advanced multi-table encryption capabilities.
 
-## 🔐 What It Does
+## What It Does
 
 Instead of strong encryption (which is better handled by libs like bcrypt), this tool is meant for:
 
@@ -15,7 +15,7 @@ Instead of strong encryption (which is better handled by libs like bcrypt), this
 - Creative text transformations with emojis and symbols
 - Advanced cipher combinations for educational purposes
 
-## ✅ Use Cases
+## Use Cases
 
 - 🎮 Fun CLI tools and interactive applications
 - 🔐 Password managers showing masked variants
@@ -25,13 +25,12 @@ Instead of strong encryption (which is better handled by libs like bcrypt), this
 - Testing and demonstration of cipher algorithms
 - Creative text art and visual transformations
 
-## 🧠 Features
+## Features
 
 - **7 Cipher Methods**: Complete encryption toolkit for various use cases
 
   - `caesar` - Classic Caesar cipher with customizable shift
   - `rot13` - ROT13 cipher (shift by 13, self-inverse)
-  - `symbolMap` - Replace characters with custom symbols/emojis
   - `mirror` - Atbash cipher (a ↔ z, b ↔ y, etc.)
   - `multiTable` - **Advanced!** Multi-table Caesar with dynamic shift patterns
   - `polyalphabetic` - **Advanced!** Keyword-based Vigenère-style cipher
@@ -59,22 +58,6 @@ Instead of strong encryption (which is better handled by libs like bcrypt), this
   -  **Fast**: Optimized algorithms with excellent performance
   -  **CLI Tool**: Complete command-line interface included
 
-## 📦 Installation
-
-```bash
-# npm
-npm install password-obscura
-
-# yarn
-yarn add password-obscura
-
-# pnpm
-pnpm add password-obscura
-
-# bun
-bun add password-obscura
-```
-
 ## API Usage
 
 ### Basic Examples
@@ -97,9 +80,6 @@ console.log(rot13Hidden); // → "uryyb-jbeyq"
 const mirrored = obscure("hello", { method: "mirror" });
 console.log(mirrored); // → "svool"
 
-// Symbol mapping with emojis
-const emojiHidden = obscure("abc123", { method: "symbolMap" });
-console.log(emojiHidden); // → "🔥⭐🌟🟠🟡🟢"
 ```
 
 ### Advanced Multi-Table Ciphers
@@ -184,35 +164,7 @@ const advancedResult = obscure("Secret Message", {
 console.log(advancedResult); // → Complex multi-layer transformation
 ```
 
-### Advanced Symbol Mapping
-
-```typescript
-import { obscure, reveal, SymbolMapConfig } from "password-obscura";
-
-// Custom symbol mapping
-const customMap: SymbolMapConfig = {
-  a: "🌟",
-  b: "🚀",
-  c: "💎",
-  "1": "⭐",
-  "2": "🔥",
-  "3": "💫",
-};
-
-const customHidden = obscure("abc123", {
-  method: "symbolMap",
-  symbolMap: customMap,
-});
-console.log(customHidden); // → "🌟🚀💎⭐🔥💫"
-
-const restored = reveal(customHidden, {
-  method: "symbolMap",
-  symbolMap: customMap,
-});
-console.log(restored); // → "abc123"
-```
-
-## 🛠️ CLI Usage
+## CLI Usage
 
 The package includes a convenient CLI tool:
 
@@ -242,10 +194,6 @@ uryyb-jbeyq
 $ npx password-obscura encode "secret" --method mirror
 hvxivg
 
-# Symbol mapping with emojis
-$ npx password-obscura encode "abc123" --method symbolMap
-🔥⭐🌟🟠🟡🟢
-
 # Advanced multi-table with Fibonacci pattern
 $ npx password-obscura encode "Hello World" --method multiTable --pattern fibonacci
 Iukpt Fkzll
@@ -263,7 +211,7 @@ $ npx password-obscura encode "Complex Text" --method advanced
 txfI fmofhxmC
 ```
 
-## 📖 API Reference
+## API Reference
 
 ### `obscure(input: string, options: ObscureOptions): string`
 
@@ -290,7 +238,6 @@ interface ObscureOptions {
   method:
     | "caesar"
     | "rot13"
-    | "symbolMap"
     | "mirror"
     | "multiTable"
     | "polyalphabetic"
@@ -298,9 +245,6 @@ interface ObscureOptions {
 
   // Caesar cipher options
   shift?: number; // default: 3
-
-  // Symbol mapping options
-  symbolMap?: SymbolMapConfig;
 
   // Multi-table cipher options
   tableConfig?: DynamicTableConfig;
@@ -313,10 +257,6 @@ interface ObscureOptions {
     type: "table" | "shift" | "reverse" | "transpose";
     config?: any;
   }>;
-}
-
-interface SymbolMapConfig {
-  [key: string]: string;
 }
 
 interface DynamicTableConfig {
@@ -335,16 +275,13 @@ interface PolyalphabeticConfig {
 ### Constants
 
 ```typescript
-// Pre-defined symbol mapping with emojis for all alphanumeric characters
-DEFAULT_SYMBOL_MAP: SymbolMapConfig;
-
 // Four pre-defined alphabet tables for multi-table ciphers
 DEFAULT_TABLES: string[];
 ```
 
-## 🔍 Method Details
+## Method Details
 
-### Basic Cipher Methods
+### 1. Basic Cipher Methods
 
 #### Caesar Cipher
 
@@ -362,15 +299,6 @@ Special case of Caesar cipher with a shift of 13.
 - Commonly used in online forums
 - Fixed 13-character shift for consistency
 
-#### Symbol Map
-
-Replaces characters with custom symbols or emojis.
-
-- Includes default emoji mapping for all alphanumeric characters
-- Fully customizable with your own symbol mappings
-- Perfect for creative obfuscation and visual appeal
-- Handles Unicode characters properly
-
 #### Mirror (Atbash)
 
 Maps each letter to its mirror position in the alphabet (A↔Z, B↔Y, etc.).
@@ -379,7 +307,7 @@ Maps each letter to its mirror position in the alphabet (A↔Z, B↔Y, etc.).
 - Ancient cipher method with historical significance
 - Case-preserving transformation
 
-### Advanced Cipher Methods
+### 2. Advanced Cipher Methods
 
 #### Multi-Table Caesar
 
@@ -491,24 +419,6 @@ node demo.js
 npx password-obscura encode "test" --method caesar --shift 5
 ```
 
-### Project Structure
-
-```
-password-obscura/
-├── src/
-│   ├── index.ts              # Main API entry point
-│   └── lib/                  # Cipher implementations
-│       ├── caesar.ts         # Basic Caesar cipher
-│       ├── rot13.ts          # ROT13 implementation
-│       ├── symbolMap.ts      # Symbol/emoji mapping
-│       ├── atbash.ts         # Mirror/Atbash cipher
-│       └── dynamicCipher.ts  # Advanced multi-table ciphers
-├── bin/cli.ts                # Command-line interface
-├── demo.js                   # Comprehensive test suite
-├── dist/                     # Built output
-└── docs/                     # Documentation files
-```
-
 ### Versioning
 
 This project follows [Semantic Versioning](https://semver.org/). See [VERSIONING.md](VERSIONING.md) for details about our versioning strategy.
@@ -534,7 +444,7 @@ Or use the release script:
 ./scripts/release.sh patch
 ```
 
-## � Troubleshooting & FAQ
+## Troubleshooting & FAQ
 
 ### Common Issues
 
@@ -552,10 +462,10 @@ A: Either install globally with `npm install -g password-obscura` or use `npx pa
 
 ### Getting Help
 
-- 📖 Check the [API documentation](#-api-reference) above
-- 🔍 Review the [comprehensive test suite](demo.js) for examples
-- 🐛 Report issues on [GitHub Issues](https://github.com/angga-22/password-obscura/issues)
-- 💡 Request features or ask questions in [Discussions](https://github.com/angga-22/password-obscura/discussions)
+- Check the [API documentation](#-api-reference) above
+- Review the [comprehensive test suite](demo.js) for examples
+- Report issues on [GitHub Issues](https://github.com/angga-22/password-obscura/issues)
+- Request features or ask questions in [Discussions](https://github.com/angga-22/password-obscura/discussions)
 
 ## �📄 License
 
