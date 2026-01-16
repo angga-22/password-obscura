@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/password-obscura.svg)](https://www.npmjs.com/package/password-obscura)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
+![CI Status](https://github.com/angga-22/password-obscura/actions/workflows/ci.yml/badge.svg)
 A lightweight NPM package to "visually" obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern developers with advanced multi-table encryption capabilities.
 
 ## What It Does
