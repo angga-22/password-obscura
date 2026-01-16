@@ -1,6 +1,6 @@
 {
   "name": "password-obscura",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "A lightweight NPM package to visually obscure passwords or strings using customizable shift-based and symbol-mapping logic. Inspired by Caesar Cipher — reimagined for modern devs.",
   "license": "MIT",
   "author": "Angga Saputra",
